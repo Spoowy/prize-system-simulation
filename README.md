@@ -1,6 +1,8 @@
 # Affiliate Prize System Simulator
 Simulate winner's prices on a percentage-based reward system. 
 
+[Demo](https://spoowy.github.io/prize-system-simulation/index.html)
+
 The first winner gets 50% of his commission back, the second 40%, the third 30% etc.
  
 ![Preview screenshot](https://raw.githubusercontent.com/Spoowy/prize-system-simulation/master/screenshot.png)
