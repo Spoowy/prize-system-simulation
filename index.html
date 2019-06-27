@@ -1,0 +1,97 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Affiliate Prize System Simulator</title>
+    <meta name="description" content="Simulate winner's prices on a percentage-based reward system.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            background: #20262E;
+            padding: 20px;
+            font-family: Helvetica;
+        }
+
+        #banner-message {
+            background: #fff;
+            border-radius: 4px;
+            padding: 20px 40px;
+            font-size: 25px;
+            text-align: center;
+            transition: all 0.2s;
+            margin: 0 auto;
+            width: 500px;
+        }
+
+        ol {
+            text-align: left;
+            padding: 0 0 0 30px;
+        }
+
+        ol li {
+            margin-bottom: 20px;
+        }
+
+        ol li .place-val {
+            margin-left: 20px;
+            float: right;
+        }
+
+        input[type=range] {
+            margin: 20px 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="banner-message">
+        <p><b>Hello WarriorWorld</b></p>
+        <div>
+            You generate <span id="output"></span> in comissions
+        </div>
+        <input type="range" min="10000" max="1000000" step="10000" value="50000" id="range">
+
+        <ol id="prizes"></ol>
+    </div>
+
+    <script type="text/javascript">
+        (function() {
+            var slider = document.getElementById("range");
+            var output = document.getElementById("output");
+            var prizes = [50, 40, 30, 20, 10]; // prizes (percentages), in logical order
+
+            prizes.forEach(function(percentage, i) {
+                var prize = ++i;
+                var listItem = document.createElement('li');
+                listItem.innerHTML = "Place prize (" + percentage + '%) <span class="place-val" id="place-' + prize + '"></span>';
+                document.getElementById('prizes').appendChild(listItem);
+            });
+
+            output.innerHTML = format(slider.value);
+            update(slider.value);
+
+            slider.oninput = function() {
+                output.innerHTML = format(this.value);
+                update(this.value);
+            }
+
+            function update(value) {
+                prizes.forEach(function(percentage, i) {
+                    var prize = ++i;
+                    var el = document.getElementById("place-" + prize);
+                    el.innerHTML = format((parseInt(value) / 100) * percentage);
+                });
+            }
+
+            function format(n) {
+                return "$ " + parseFloat(n).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+            }
+        })();
+    </script>
+</body>
+
+</html>
