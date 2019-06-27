@@ -23,7 +23,8 @@
             text-align: center;
             transition: all 0.2s;
             margin: 0 auto;
-            width: 500px;
+            max-width: 500px;
+            width: 80%;
         }
 
         ol {
@@ -43,6 +44,12 @@
         input[type=range] {
             margin: 20px 0;
             width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            #banner-message {
+                font-size: 15px !important;
+            }
         }
     </style>
 </head>
